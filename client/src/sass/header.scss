@@ -1,0 +1,100 @@
+@use "variables" as v;
+@use "mixin" as m;
+
+.header{
+    padding-top: 2rem;
+    @include m.flex(column, center, center, 4rem);
+    @include m.tablet{
+        @include m.flex(row,space-between);
+    }
+   
+
+    &__header{
+        line-height: 1;
+        position: relative;
+        padding-left: 3rem;
+
+    span{
+        display: block;
+        font-size: 5.4rem;
+    }
+
+    &::before{
+        content: "";
+        background: linear-gradient(to bottom, v.$black,v.$primaryColor);
+        top: 0;
+        left: 0;
+        display: block;
+        width: 2rem;
+        height: 10rem;
+        position: absolute;
+    }
+    }
+
+    &__group{
+        @include m.flex(column, center, center, 3rem);
+        width: auto;
+        @include m.tablet{
+             @include m.flex(row, flex-start, center, 3rem);
+        }
+       
+        
+
+        button{
+            padding: 1rem 5rem;
+            font-size: 1.6rem;
+            
+            @include m.tablet{
+              padding: 1rem 2rem;
+            }
+        }
+    }
+
+    &__nickname{
+        
+        font-family: v.$primaryFont;
+        font-weight: bold;
+        color: v.$black;
+        position: relative;
+        display: none;
+        @include m.appear(1000ms, ease);
+
+        &::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -2rem;
+            transform: translate(0,-50%);
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: v.$colorToast;
+            border: solid 1px green;
+        }
+
+        a{
+            display: inline-block;
+            text-decoration: none;
+            color: v.$colorHover;
+            border-bottom: 1px solid transparent;
+            transition: border-color 300ms ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        a:last-child{
+            color: v.$primaryColor;
+        }
+
+        a:hover::before{ 
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%; 
+            width: 80%;  
+            height: 1px; 
+            background-color: v.$colorHover;  
+            transform: translateX(-50%);
+        }
+    }
+}

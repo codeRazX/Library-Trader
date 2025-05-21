@@ -1,0 +1,230 @@
+@use "variables" as v;
+@use "mixin" as m;
+
+.dashboard{
+    @include m.modal;
+    @include m.flex(column, flex-start, stretch);
+    max-width: 80rem;
+    background-color: #E1E1E1;
+    padding: 0;
+    min-height: 60%;
+    @include m.tablet{
+      @include m.flex(row, flex-start, stretch);
+    }
+    &__aside{
+      @include m.flex(row, flex-start, flex-start, .2rem);
+      box-shadow: 0 0 5px black;
+      background-color: #E1E1E1;
+      
+      @include m.tablet{
+        @include m.flex(column, flex-start, flex-start, .2rem);
+        flex: 1 30%;
+      }
+        button{
+          
+            width: 100%;
+            flex: 1;
+            height: 6rem;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.6rem;
+            background-color: #CCC;
+            border: none;
+            font-family: v.$headingFont;
+            color:  v.$colorHover;
+            text-shadow: 0 0 1px black;
+            @include m.tablet{
+              text-align: left;
+              padding-left: 1rem;
+              height: 0;
+              font-size: 1.8rem;
+            }
+
+            &:hover{
+                box-shadow: 0 0 10px black;
+                background-color: #EEE;
+            }
+
+            &:active{
+              background-color: #e1e1e1;
+            }
+        }
+    }
+
+    &__board{
+        flex: 2 70%;
+
+          h2{
+            text-align: center;
+            margin: 1rem;
+            color: v.$black;
+            border-bottom: 5px groove gray;
+          }
+
+      
+        &__grid{
+          padding: 2rem;
+         
+           &--form{
+           
+            @include m.flex(column, flex-start, flex-start, 4rem);
+            width: 100%;
+
+            fieldset{
+              padding: 3rem 1rem;
+              width: 100%;
+              border-color: #E1E1E1;
+              background-color: #eee;
+
+              @include m.flex(column, flex-start, stretch, 2rem);
+
+                div{
+                  @include m.flex(row, flex-start, center, .5rem);
+                }
+
+                label{
+                  font-family: v.$headingFont;
+                  font-size: 1.4rem;
+                }
+
+                input{
+                  flex: 1;
+                  padding: .5rem 1rem;
+                  border: 1px solid #BBB;
+                  border-radius: 5px;
+                  font-family: inherit;
+                  color: v.$black;
+                  font-size: 1.6rem;
+
+                  &:focus{
+                    outline: none;
+                    border-color: v.$colorToast;
+                  }
+                }
+
+                  
+              }
+              
+
+              button{
+               background-color: green;
+               box-shadow: 0 0 5px v.$black;
+               align-self: flex-end;
+               padding: 1.5rem 3rem;
+               text-shadow: 0 0 5px black;
+              }
+
+            }
+
+            
+        ol{
+          @include m.flex(column, flex-start, stretch, 1rem);
+          display: none;
+          list-style: none;
+          
+          li{
+            @include m.flex(column, flex-start, stretch, 1rem);
+            background-color: #EEE;
+            padding: 1rem;
+            border: 1px solid gray;
+            border-radius: 5px;
+            box-shadow: 0 0 5px black;
+            transition: transform 200ms ease;
+            cursor: pointer;
+            
+
+            &:hover{
+              transform: scale(1.02);
+            }
+            p{
+                font-weight: 500;
+                color: v.$black;
+                
+            }
+            
+          }
+
+          .with-label{
+            @include m.labelCard(v.$black, whitesmoke);
+            font-size: 2rem;
+            padding: .3rem 2rem;
+            max-width: max-content;
+            text-shadow: 0 0 4px v.$black;
+            box-shadow: 0 0 0;
+            text-transform: uppercase;
+            font-weight: bold;
+
+            &__from,
+            &__status,
+            &__delete,
+            &__accept{
+            padding: .8rem 2rem;
+            font-size: 1.4rem;
+             cursor: pointer;
+            }
+
+            &__from{
+               background-color: #09F;
+            }
+            &__status{
+              background-color: goldenrod;
+            }
+
+            &__delete{
+              background-color: v.$primaryColor;
+              align-self: flex-end;
+               &:hover{
+                background-color: v.$colorHover;
+              }
+            }
+
+            &__accept{
+              background-color: green;
+
+              &:hover{
+                background-color: olivedrab;
+              }
+            }
+          }
+
+
+
+          .notification{
+            font-family: v.$headingFont;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: v.$black;
+            
+            &__title{
+              margin: 0 auto;
+            }
+
+            &__block{
+              width: 100%;
+              @include m.flex(row, center, center, 2rem);
+              margin: 1rem 0;
+            }
+
+            &__wants{
+              color: v.$colorHover;
+            }
+
+            &__message{
+              font-family: v.$primaryFont;
+              font-weight: 500;
+            }
+
+            &__button{
+              margin-top: 1rem;
+              width: 100%;
+              @include m.flex(row, flex-end, center, 2rem);
+              
+            }
+          }
+
+        }
+
+      }
+    }
+
+}

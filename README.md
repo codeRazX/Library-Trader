@@ -1,52 +1,88 @@
-# Your Library
+# 📚 Library Trader — Book Exchange Platform
 
-## Description
+**Library Trader** is a full-stack web application that allows users to trade books in a simple, organized, and secure way. It features both a **backend** (Node.js + Express + MongoDB) and a **frontend** (HTML, SASS, and Vanilla JavaScript), offering a complete system for book management, authentication, exchange handling, and notifications.
 
-**Your Library** is a project created for *The Odin Project* course. It’s a simple yet powerful library system that allows users to manage their personal book collection. With this library, you can add, edit, delete, and view books, all through an easy-to-use interface.
+---
 
-The initial library comes with a few **default books** to get you started. These books can be deleted, edited, or used as a base to add new books.
+## 🚀 Features
 
-You can add books by filling out a form that includes fields such as:
+### 🔐 Authentication
 
-- Title
-- Author
-- Number of pages
-- Year of publication
-- Genre
-- Whether you have read the book or not
-- Description
+- User registration with custom validations.
+- Secure login using cookies (`httpOnly`, `SameSite`, `Secure`).
+- JWT-based token authentication via middleware.
+- Logout mechanism that clears session cookies.
 
-Additionally, each book you add will automatically include the date it was saved to the library. Once a book is created, you can click on it to view all the information you've entered.
+### 👤 User Dashboard
 
-## Features
+- Access and edit personal information and password.
+- View:
+  - Uploaded books.
+  - Sent trade requests.
+  - Exchange notifications (accepted/rejected).
 
-- **Add books** to your library with multiple fields.
-- **Edit book details** after they are added.
-- **Delete books** from the library.
-- **Clear the entire library** with a single click.
-- **Sort books alphabetically** by title.
-- **Filter books** based on various criteria such as:
-  - Title
-  - Genre
-  - Year of publication
-  - Page count
-  - Author
-  - Read status
+### 📖 Book Management
 
-This allows you to easily organize and search through your book collection based on specific attributes.
+- Add books with a title and short description.
+- Prevent duplicate books per user (same title).
+- View all books proposed by any user.
+- Remove previously uploaded books.
 
-## Limitations (Current Version)
+### 🔄 Trade System
 
-- **No local storage**: In this version, books are not saved locally or in a database. If you refresh the page or close the browser, the library will be empty.
-  
-- **No persistent storage**: Since the books are not saved to a database or local storage, all changes made during a session will be lost once the page is refreshed or closed.
+- Request a book from another user with a custom message.
+- Logical validation to prevent:
+  - Requesting books you already own.
+  - Requesting your own books.
+  - Sending multiple requests for the same book to the same user.
+- Notifications sent to the receiver with the option to accept or reject.
+- Automatic transfer of book ownership upon acceptance.
+- Self-cleaning system to delete invalid or outdated requests.
 
-## Technologies Used
+### 🔔 Notifications
 
-- HTML
-- CSS
-- JavaScript
+- Receive alerts when:
+  - You get a book request.
+  - A request you sent was accepted or rejected.
+  - A book has already been acquired before a response.
+- Smart notification cleanup to avoid duplication or invalid states.
 
-## Future Features
+### 🌍 Community
 
-In the future, I plan to implement local storage or a backend database to persist the book data. This will allow users to save their books and access them even after refreshing or revisiting the site.
+- Browse all registered users.
+- See the list of all active or completed trades.
+
+---
+
+## 🧑‍💻 Tech Stack
+
+### ⚙️ Backend  
+- ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white) **Node.js**  
+- ![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat&logo=express&logoColor=white) **Express.js**  
+- ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat&logo=mongodb&logoColor=white) **MongoDB** with Mongoose  
+- ![JWT](https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens) **JWT** authentication  
+- ![Cookie Parser](https://img.shields.io/badge/Cookie--Parser-lightgrey?style=flat) **Cookie-Parser** for secure cookies  
+- ![CORS](https://img.shields.io/badge/CORS-enabled-blue?style=flat) **CORS** with dynamic origin and credentials  
+- ![dotenv](https://img.shields.io/badge/dotenv-8DD6F9?style=flat&logo=dotenv&logoColor=black) **dotenv** for environment management  
+- 🧩 Custom middlewares (validation, sanitization, normalization)
+
+### 🎨 Frontend  
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) **HTML5**  
+- ![SASS](https://img.shields.io/badge/SASS-CC6699?style=flat&logo=sass&logoColor=white) **SASS (SCSS)**  
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) **Vanilla JavaScript**  
+- ![Fetch API](https://img.shields.io/badge/Fetch%20API-native-blue?style=flat) **Fetch API** with cookie credentials enabled  
+- ✅ Fully functional **CRUD** using HTTP methods:
+  - `GET`: fetch data (books, users, trades, profile)
+  - `POST`: register, login, add books, request trades
+  - `PATCH`: update profile info or trade status
+  - `DELETE`: remove books or items from profile  
+- 💎 Clean, responsive, and user-focused UI
+
+---
+
+## 👤 Author
+
+Developed as an academic project by [codeRazX](https://github.com/codeRazX).  
+All code is original and structured for clarity, usability, and extensibility.
+
+

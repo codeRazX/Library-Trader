@@ -1,0 +1,138 @@
+@use 'variables' as v;
+
+
+@mixin tablet(){
+    @media (min-width: v.$tablet){
+        @content;
+    }
+}
+
+@mixin flex($direction: 'row', $justify: center, $align-items: center, $gap: 0rem){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align-items;
+    gap: $gap;
+}
+
+@mixin btn(){
+    background-color:v.$primaryColor;
+    border: none;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    font-family: v.$primaryFont;
+    border-radius: 5px;
+    cursor: pointer;  
+    position: relative;
+    overflow: hidden;   
+    padding: 1.5rem 5rem;
+    max-width: 20rem;
+    font-size: 2rem;
+    transition: transform 200ms linear;
+
+    &::before{
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to left, transparent, #fffde3, transparent);
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        transform: skewX(-30deg);
+        transition: left 500ms;
+    }
+
+    &:hover::before{
+        left: 100%;
+    }
+
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+@mixin modal(){
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 99999;
+    max-width: 50rem;
+    width: 95%;
+    max-height: 80%;
+    overflow-y: auto;
+    background-color: whitesmoke;
+    box-shadow: 0 0 10px v.$black;
+    border-radius: 10px;
+    padding: 2rem;
+    animation: appear 600ms ease-in-out forwards;
+}
+
+@mixin toast($background: v.$colorToast, $backgroundBefore: greenyellow){
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+    color: white;
+    width: max-content;
+    padding: 2rem;
+    background-color: $background;
+    text-shadow: 0 0 5px black;
+    font-weight: bold;
+    z-index: 99999999;
+
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 20%;
+        background-color: $backgroundBefore;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+
+@mixin card(){
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 1rem;
+    background-color: v.$black;
+    color: whitesmoke;
+    font-family: v.$headingFont;
+    box-shadow: 0 0 3px inset white, 0 0 5px black;
+    text-shadow: 0 0 5px black;
+    cursor: pointer;
+    transition: transform 200ms ease;
+
+    p{
+        color: inherit;
+        font-family: inherit;
+    }
+
+    &:hover{
+        transform: scale(1.02);
+    }
+
+}
+
+@mixin labelCard($background: #E1E1E1, $color: v.$black){
+    background-color: $background;
+    text-shadow: 0 0 0;
+    padding: .2rem 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+    font-family: v.$primaryFont;
+    color: $color;
+    font-weight: 500;
+    border: none;
+}
+
+@mixin appear($time: 300ms, $style: linear, $finally: forwards){
+    animation: appear $time $style $finally;
+}

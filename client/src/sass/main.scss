@@ -1,0 +1,186 @@
+@use 'variables' as v;
+@use 'mixin' as m;
+
+.main{
+    padding-bottom: 10rem;
+
+   
+    &__group{
+        @include m.flex(row,space-around,center,2rem);
+        border-radius: 100px;
+        background-color: v.$black;
+        font-weight: bold;
+        
+        button{
+            background-color: v.$black;
+            border: none;
+            cursor: pointer;
+            padding: 2rem;
+            border-radius: 100px;
+            width: 100%;
+            color: white;
+            font-family: inherit;
+            font-size: 2rem;
+            transition: background-color, box-shadow 200ms linear;
+          
+            &:hover{
+                background-color: black;
+                box-shadow: 0 0 10px #e1e1e1;  
+            }
+        }
+    }
+
+
+     &__library{
+            margin-top: 5rem;
+
+            h3{
+                text-align: center;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                padding: 2rem 0;
+                background: linear-gradient(to right, v.$primaryColor, v.$colorToast);
+                border-bottom: 1px solid gray;
+                color: white;
+                text-shadow: 0 0 5px v.$black;
+            }
+        
+            &--grid{
+                background: radial-gradient(circle, #E1E1E1, #BBB);
+                padding: 1rem;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+
+                    &--userbooks{
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(calc(120rem / 4),1fr));
+                        gap: 1rem;
+                    }
+
+                    &--traders{
+                        display: none;
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        row-gap: 3rem;
+                    }
+               
+            }
+    }
+}
+
+.item{
+    @include m.flex(column, center, flex-start, 1rem);
+    @include m.card;
+
+    &__name{
+        @include m.flex(row-reverse, flex-start, center, 1rem);
+        
+        &--user{
+                background-color: black;
+                padding: .5rem 2rem;
+                border-radius: 5px;
+                box-shadow: 0 0 2px white;
+                font-size: 1.5rem;
+                color: whitesmoke;
+              
+        }
+
+        &--profile{
+            width: 3rem;
+            height: 3rem;
+            border-radius: 100%;
+            border: 1px solid #E1E1E1;
+            box-shadow: 0 0 5px inset black;
+        }
+
+        &--img-book{
+
+            background-color: v.$colorToast;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px double chartreuse;
+            box-shadow: 0 0 2px inset black, 0 0 4px white;
+
+            img{
+                width: 2.5rem;
+                height: 4rem;
+            }
+          
+           
+        }
+    }
+   
+
+    &__info{
+        @include m.flex(row, space-between, center, 1rem);
+        flex-wrap: wrap;
+        font-size: 1.3rem;
+        width: 100%;
+        color: #E1E1E1;
+
+        .item__info--countbooks,
+        .item__info--book-from{
+            @include m.labelCard;
+        }
+
+      
+    }   
+}
+
+.trader{
+    @include m.flex(row, space-between, center, 4rem);
+
+    &__requester,
+    &__from{
+        @include m.flex(column, center, center, 1rem);
+        @include m.card;
+        flex: 1;
+        
+    }
+
+
+    .trader__requester--label{
+        @include m.labelCard(green, white);
+        text-shadow: 0 0 5px black;
+        font-weight: bold;
+    }
+    .trader__from--label{
+        @include m.labelCard(#09F, white);
+        text-shadow: 0 0 5px black;
+        font-weight: bold;
+    }
+
+    .trader__book{
+        @include m.labelCard(v.$primaryColor, white);
+        padding: 1rem 2rem;
+        font-weight: bold;
+        text-shadow: 0 0 5px black;
+        font-family: v.$headingFont;
+        cursor: pointer;
+        position: relative;
+        
+        &:before,
+        &:after{
+            content: "";
+            position: absolute;
+            width: 3rem;
+            height: 2rem;
+            top: 0;
+            border-bottom: 2px dashed v.$colorHover;
+            background-color: transparent;
+           
+        }
+
+        &:before{
+            left: -3.5rem;
+        }
+
+        &:after{
+            right: -3.5rem;
+        }
+    }
+}
