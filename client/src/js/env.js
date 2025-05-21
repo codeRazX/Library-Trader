@@ -1,3 +1,3 @@
-const API_URL='http://localhost:3000/';//CAMBIAR EN PRODUCCION
+const API_URL='https://library-trader.onrender.com';
 
 export default API_URL;
